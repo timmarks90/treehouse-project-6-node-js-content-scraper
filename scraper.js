@@ -38,7 +38,7 @@ const shirtRequest = () => {
     });
 };
 
-// create data folder in parent folder if data folder doesn't already exist
+// Create data folder in parent folder if data folder doesn't already exist
 if (fs.existsSync("./data")) {
     shirtRequest();
 } else {
