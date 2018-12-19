@@ -1,0 +1,31 @@
+{
+  "name": "scraper.js",
+  "version": "0.0.1",
+  "description": "A web scraper",
+  "main": "scraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon scraper.js"
+  },
+  "keywords": [
+    "scrape"
+  ],
+  "author": "Tim Marks",
+  "license": "ISC",
+  "dependencies": {
+    "json2csv": "^4.3.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timmarks90/treehouse-nodeJs-content-scraper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/timmarks90/treehouse-nodeJs-content-scraper/issues"
+  },
+  "homepage": "https://github.com/timmarks90/treehouse-nodeJs-content-scraper#readme"
+}
