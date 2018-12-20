@@ -1,5 +1,6 @@
 const request = require('request');
 const cheerio = require('cheerio');
+const csv = require('json2csv');
 const fs = require('fs');
 
 // Get and format today's date
