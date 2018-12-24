@@ -1,6 +1,6 @@
 const request = require('request');
 const cheerio = require('cheerio');
-const csv = require('json2csv');
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 const fs = require('fs');
 
 // Get and format today's date
@@ -48,12 +48,17 @@ if (fs.existsSync("./data")) {
     });
 }
 
-// Save shirt content to csv file in data folder with today's date
-const writeCSV = fs.createWriteStream('./data/' + today + '.csv');
-
-//Insert header titles into CSV
-writeCSV.write(`Title,Price,ImageURL,URL,Time \n`);
-
+const csvWriter = createCsvWriter({
+    path: './data/' + today + '.csv',
+    header: [
+        {id: 'title', title: 'Title'},
+        {id: 'price', title: 'Price'},
+        {id: 'imgurl', title: 'ImageURL'},
+        {id: 'url', title: 'URL'},
+        {id: 'time', title: 'Time'}
+    ]
+});
+ 
 // visit the individual shirt pages
 const shirtPage = (link) => {
     request(link, (error, response, html) => {
@@ -92,8 +97,15 @@ const shirtPage = (link) => {
             let time = hours + ':' + minutes;
             
             //Write page content into CSV rows
-            writeCSV.write(`${shirtTitle},${shirtPrice},${shirtImgURL},${shirtURL},${time} \n`);
-            console.log('Scraping Done...');
+            // writeCSV.write(`${shirtTitle},${shirtPrice},${shirtImgURL},${shirtURL},${time} \n`);
+
+            const records = [
+                {title: shirtTitle, price: shirtPrice, imgurl: shirtImgURL, url: shirtURL, time: time}
+            ];
+            csvWriter.writeRecords(records) // returns a promise
+            .then(() => {
+                console.log('Scraping Done...');
+            });
         }
     });
 };
