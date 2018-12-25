@@ -78,7 +78,7 @@ const shirtPage = (link) => {
                     // get shirt title, removing the dollar amount and the comma to place entire title in its own csv column
                     const shirtTitle = $('.shirt-details h1').children().remove().end().text().replace(/,/, '');
                     // get shirt img url
-                    const shirtImgURL = $('.shirt-picture span img').attr('src');
+                    const shirtImgURL = 'http://shirts4mike.com/' + $('.shirt-picture span img').attr('src');
                     // get shirt page url
                     const shirtURL = link;
                     // get current time
